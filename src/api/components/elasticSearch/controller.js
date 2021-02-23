@@ -1,8 +1,9 @@
 const client = require('../../../utils/connections/elasticSearch');
 
-/* Get the health status */
+
 const chechHealth = () => {
-    return client.cluster.health();
+    // client.cluster.health();
+    return client.ping({});
 }
 
 module.exports = {
