@@ -3,8 +3,7 @@ const router = express.Router();
 const { createUserSchema, userIdSchema, updateUserSchema } = require('../../../utils/validations/schemas/userExample'); // eslint-disable-line
 const validationHandler = require('../../../utils/middlewares/validationHandler');
 
-router.get('/', (req, res, next) => {
-    
+router.get('/', (req, res, next) => {  
     try {
         res.status(200).json({
             Message: "Hello!"
