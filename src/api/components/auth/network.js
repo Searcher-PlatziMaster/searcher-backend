@@ -17,7 +17,10 @@ router.post('/sign-in', async (req, res, next) => {
             secure: !config.dev,
         });
 
-        res.status(200).json(user);
+        res.status(200).json({
+            message: 'This user exist.',
+            user
+        });
     
     } catch (error) {
         next(error)
@@ -27,7 +30,10 @@ router.post('/sign-in', async (req, res, next) => {
 router.post('/sign-up', validationHandler(createUserSchema), async (req, res, next) => {
     try {
         const userCreated = await authController.signup(req.body)
-        res.status(201).json(userCreated)
+        res.status(201).json({
+            message:'User created',
+            user:userCreated
+        })
     } catch (error) {
         next(error)      
     }
