@@ -3,6 +3,7 @@ const app = express();
 require('./db');
 const cors = require('cors');
 const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
 const router = require('./api/routes/routes');
 const {
     logErrors,
@@ -14,6 +15,8 @@ const notFoundHandler = require('./utils/middlewares/notFound');
 //  Server configs
 const { config } = require('./config/index');
 app.use(express.json());
+app.use(cookieParser());
+
 app.use(express.urlencoded({ extended: true }));
 
 // Middlewares
@@ -34,9 +37,6 @@ app.use(notFoundHandler);
 app.use(logErrors);
 app.use(wrapErrors);
 app.use(errorHandler);
-
-
-
 
 app.listen(config.port, () => {
     console.log(`Listening on: http://localhost:${config.port}`);

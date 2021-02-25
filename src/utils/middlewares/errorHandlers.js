@@ -28,7 +28,6 @@ const wrapErrors = (err, req, res, next) => {
 const errorHandler = (err, req, res, next) => { // eslint-disable-line
     const { output: { statusCode, payload } } = err;
 
-
     res.status(statusCode);
     res.json(errorStack(payload, err.stack));
 }

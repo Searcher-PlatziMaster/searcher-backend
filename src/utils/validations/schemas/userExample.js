@@ -7,8 +7,10 @@ const passwordSchema = joi.string().min(8).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d
 
 const createUserSchema = {
     name: firstNameSchema.required(),
+    // lastName,
+    password: passwordSchema.required(),
     email: emailSchema.required(),
-    password: passwordSchema.required()
+    // department
 };
 
 const updateUserSchema = {

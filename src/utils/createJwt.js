@@ -7,7 +7,7 @@ const createToken = (user) => {
         name: user.name,
         email: user.email
     }, config.jwt_secret, {
-        expiresIn: '15m'
+        expiresIn: '1h'
     })
 
     return token;
