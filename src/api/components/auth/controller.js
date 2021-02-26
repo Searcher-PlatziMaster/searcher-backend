@@ -3,7 +3,7 @@ const { config } = require('../../../config');
 const bcrypt = require('bcrypt');
 const base64 = require('base-64');
 const boom = require('@hapi/boom');
-const jwt = require('jsonwebtoken');
+const { createToken } = require('../../../utils/createJwt')
 
 class AuthController {
     constructor(){
@@ -24,21 +24,14 @@ class AuthController {
         if (comparePasswords) {
             return {
                 user,
-                token: jwt.sign({
-                        sub: user._id,
-                        email: user.email,
-                        name: user.name
-                    }, 
-                    config.jwt_secret, {
-                        expiresIn: '1h'
-                    })
+                token: createToken(user)
             }
         }
 
         return boom.unauthorized('Wrong Email or Password')
     }   
     async signup(user) {
-        let passwordEncrypted = await bcrypt.hash(user.password, 10);
+        let passwordEncrypted = await bcrypt.hash(user.password, config.saltRoundsBcrypt);
         delete user.password;
         
         let userCreated = await this.store.createUser({
