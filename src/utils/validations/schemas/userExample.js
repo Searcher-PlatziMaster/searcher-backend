@@ -58,8 +58,13 @@ const createUserSchema = {
 
 const updateUserSchema = {
     name: firstNameSchema,
+    password: passwordSchema,
     email: emailSchema,
-    password: passwordSchema
+    lastName: lastNameSchema,
+    birthDate: birthDateSchema,
+    gender: genderSchema,
+    job: jobSchema,
+    department: departamentsSchema
 }
 
 module.exports = {
