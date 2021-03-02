@@ -11,7 +11,7 @@ const userSchema = new Schema({
     department: String,
     email: {
         type: String,
-        // unique: true,
+        unique: true,
         match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
     },
     isAdmin: {
