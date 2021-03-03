@@ -12,5 +12,57 @@ router.get('/health', async (req, res, next) => {
     }
 })
 
+router.post('/index', async(req, res, next) => {
+    const { index } = req.body;
+    try {
+        const created = await esController.createIndex(index);
+        res.status(200).json(created);
+    } catch (error) {
+        next(error);
+    }
+
+})
+
+router.post('/constitucion', async (req, res, next) => {
+    const { index, headline, subhead, article } = req.body;
+    console.log(index)
+    try {
+        const inserted = await esController.insertDocument(index, headline, subhead, article);
+        res.status(200).json(inserted);
+    } catch (error) {
+        next(error);
+    }
+})
+
+router.post('/refresh', async (req, res, next) => {
+    const { index } = req.body
+    try {
+        const refreshed = await esController.refreshIndex(index);
+        res.status(200).json(refreshed);
+    } catch (error) {
+        next(error);
+    }
+})
+
+router.get('/search', async (req, res, next) => {
+    const { search, index } = req.query;
+    try {
+        const finded = await esController.searchBasic(index, search);
+        res.status(200).json(finded);
+    } catch (error) {
+        next(error);
+    }
+})
+
+router.get('/mapping/:index', async (req, res, next) => {
+    const { index } = req.params;
+    console.log(index)
+    try {
+        const finded = await esController.getMappings(index);
+        res.status(200).json(finded);
+    } catch (error) {
+        next(error);
+    }
+})
 
 module.exports = router;
