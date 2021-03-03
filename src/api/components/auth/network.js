@@ -16,7 +16,7 @@ router.post('/sign-in', async (req, res, next) => {
             httpOnly: !config.dev,
             secure: !config.dev,
         });
-
+        
         res.status(200).json({
             message: 'This user exist.',
             user

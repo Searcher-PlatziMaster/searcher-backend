@@ -33,7 +33,6 @@ class AuthController {
     async signup(user) {
         let passwordEncrypted = await bcrypt.hash(user.password, config.saltRoundsBcrypt);
         delete user.password;
-        
         let userCreated = await this.store.createUser({
             ...user,
             password: passwordEncrypted
