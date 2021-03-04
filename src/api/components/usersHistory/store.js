@@ -16,8 +16,13 @@ class UsersHistoryStore {
         return await this.userHistoryModel.create(historyItem)
     }
     
-    async deleteUserHistory(){
-
+    async deleteUserHistory(query){
+        try {
+            await this.historyItemsModel.deleteOne(query) 
+            return 'Item Deleted'   
+        } catch (error) {
+           throw new Error('Internal Error')
+        }
     }
 }
 

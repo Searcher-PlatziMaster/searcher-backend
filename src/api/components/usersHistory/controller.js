@@ -29,8 +29,13 @@ class UsersHistoryController {
 
         return await this.usersHistoryStore.createUserHistory({ user_id: userId, ...historyItem }, historyItemsSource);
     }
-    async deleteUserHistory() {
-
+    async deleteUserHistory(historyItemId) {
+        try {
+            return await this.usersHistoryStore.deleteUserHistory({_id: historyItemId})
+             
+        } catch (error) {
+            throw new Error('Internal Error')
+        }
     }
 }
 

@@ -42,13 +42,15 @@ router.post('/:id',
         }
     })
 
-router.delete('/:userId',
+router.delete('/:id/:historyItemId',
     verifyJwt(),
     validateIdAndSub(),
     async (req, res, next) => {
         try {
+            const { historyItemId } = req.params
+            await usersHistoryController.deleteUserHistory(historyItemId)
             res.status(200).json({
-                message: 'DELETE users history',
+                message: 'History Item Deleted',
             })
         } catch (error) {
             next(error);
