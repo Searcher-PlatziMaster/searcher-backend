@@ -13,9 +13,11 @@ const articleSchema = joi.object().keys({
     name: joi.string().max(200),
     content: joi.array().items(joi.string())
 })
+const idSchema = joi.string();
 
 const createDocumentSchema = {
     index: indexSchema.required(),
+    id: idSchema.required(),
     headline: headlineSchema.required(),
     chapter: chapterSchema.required(),
     article: articleSchema.required()
