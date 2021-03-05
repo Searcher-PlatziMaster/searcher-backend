@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const esController = require('./controller');
+const validationHandler = require('../../../utils/middlewares/validationHandler');
+const { createDocumentSchema } = require('../../../utils/validations/schemas/docs');
 
 
 router.get('/health', async (req, res, next) => {  
@@ -23,9 +25,8 @@ router.post('/index', async(req, res, next) => {
 
 })
 
-router.post('/constitucion', async (req, res, next) => {
+router.post('/constitucion', validationHandler(createDocumentSchema), async (req, res, next) => {
     const { index, headline, subhead, article } = req.body;
-    console.log(index)
     try {
         const inserted = await esController.insertDocument(index, headline, subhead, article);
         res.status(200).json(inserted);
