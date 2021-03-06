@@ -15,7 +15,7 @@ class UsersHistoryController {
         let historyItemsSource = []  
         
         let { body } = await this.clientES.search({
-            index: 'articles',
+            index: 'constitucion_politica_de_colombia',
             body: {
                 query: {
                     terms: {

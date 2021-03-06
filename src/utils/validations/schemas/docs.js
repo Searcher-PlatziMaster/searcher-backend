@@ -19,7 +19,7 @@ const createDocumentSchema = {
     index: indexSchema.required(),
     id: idSchema.required(),
     headline: headlineSchema.required(),
-    chapter: chapterSchema.required(),
+    subhead: chapterSchema.required(),
     article: articleSchema.required()
 }
 

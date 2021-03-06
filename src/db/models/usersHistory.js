@@ -6,6 +6,7 @@ const userHistorySchema = new Schema({
 	search: String,
 	articles_id: [ String ]
 },{
+    versionKey: false,
     timestamps: true
 })
 
