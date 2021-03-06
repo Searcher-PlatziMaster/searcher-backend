@@ -5,10 +5,10 @@ const HistoryItemSchema = new Schema({
     user_id: Schema.Types.ObjectId,
     source: String,
 	headline: {
-        Title: String,
-        Name: String
+        title: String,
+        name: String
     },
-    chapter: {
+    subhead: {
         title: String,
         name: String
     },
@@ -17,6 +17,7 @@ const HistoryItemSchema = new Schema({
         content: [String]
     }
 },{
+    versionKey: false,
     timestamps: true
 })
 
