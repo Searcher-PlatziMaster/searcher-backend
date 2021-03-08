@@ -11,14 +11,14 @@ const createIndex = (index) => {
         index: index
     })
 }
-const insertDocument = (index, id, headline, subhead, article) => {
+const insertDocument = (index, id, headline, chapter, article) => {
     try {
         return client.index({
             index: index,
             id: id,
             body: {
                 headline,
-                subhead,
+                chapter,
                 article
             }
         });

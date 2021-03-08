@@ -26,9 +26,9 @@ router.post('/index', async(req, res, next) => {
 })
 
 router.post('/constitucion', validationHandler(createDocumentSchema), async (req, res, next) => {
-    const { index, id, headline, subhead, article } = req.body;
+    const { index, id, headline, chapter, article } = req.body;
     try {
-        const inserted = await esController.insertDocument(index, id, headline, subhead, article);
+        const inserted = await esController.insertDocument(index, id, headline, chapter, article);
         res.status(200).json(inserted);
     } catch (error) {
         next(error);
