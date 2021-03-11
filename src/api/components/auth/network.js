@@ -10,8 +10,8 @@ const authController = new AuthController()
 router.post('/sign-in', async (req, res, next) => {  
     try {
         const { authorization } = req.headers
-        const { user, token } = await authController.signin(authorization)
         
+        const { user, token } = await authController.signin(authorization)
         res.cookie("token", token, {
             httpOnly: !config.dev,
             secure: !config.dev,
@@ -19,7 +19,8 @@ router.post('/sign-in', async (req, res, next) => {
         
         res.status(200).json({
             message: 'This user exist.',
-            user
+            user,
+            token
         });
     
     } catch (error) {

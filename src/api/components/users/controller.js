@@ -11,6 +11,7 @@ class UsersController {
         let userUpdated;
 
         if (password) {
+            bcrypt.hash()
             const passwordEncrypted = await bcrypt.hash(user.password, config.saltRoundsBcrypt);
             delete user.password;
 

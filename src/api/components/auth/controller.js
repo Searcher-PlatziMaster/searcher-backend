@@ -13,8 +13,8 @@ class AuthController {
     async signin(basicAuth) {
         const encodedUserAndEmail = basicAuth.split(' ')[1]
         const userAndEmailString = base64.decode(encodedUserAndEmail)
-
         const [email, password] = userAndEmailString.split(':')
+        
         
         let user = await this.store.getUser({email})
         let comparePasswords = await bcrypt.compare(password, user.password)
