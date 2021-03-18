@@ -11,14 +11,14 @@ const createIndex = (index) => {
         index: index
     })
 }
-const insertDocument = (index, id, headline, chapter, article) => {
+const insertDocument = (index, id, headline, subhead, article) => {
     try {
         return client.index({
             index: index,
             id: id,
             body: {
                 headline,
-                chapter,
+                subhead,
                 article
             }
         });
@@ -37,9 +37,8 @@ const refreshIndex = (index) => {
 
 const searchBasic = async (index, lookingfor) => {
     try {
-        const res = await client.search({
+        const { body } = await client.search({
             index: index,
-            // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
             body: {
                 query: {
                     simple_query_string: {
@@ -48,11 +47,12 @@ const searchBasic = async (index, lookingfor) => {
                 }
             }
         })
-
-        return res;
+        if (body.hits.hits.length === 0) throw boom.notFound(`We are not able to find "${lookingfor}"`);
+        return body;
     } catch (error) {
-        throw boom.badRequest(error)
+        throw boom.notFound(error);
     }
+
 }
 
 const getMappings = async (index) => {
