@@ -6,8 +6,9 @@ class UsersStore {
     }
     
     async getUser(query){
-        const user =  await this.model.findOne(query)
-        return user
+        const users =  await this.model.find(query)
+        return users.length > 1 ? users
+         : users[0]
     }
 
     async createUser(user){

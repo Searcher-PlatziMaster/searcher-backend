@@ -2,12 +2,16 @@ const { config } = require('../../../config/index');
 const jwt = require('jsonwebtoken');
 const boom = require('@hapi/boom');
 function onlyToken(header){
-    let [,token] = header.split(" ")
+    if(header) {
 
-    return token
+        let [,token] = header.split(" ")
+        return token
+    } 
+    return ""
+
 }
 
-module.exports =function verifyJwt() {
+module.exports =function verifyJwt(options) {
     return function middleware (req, res, next) {
         try {
                        
@@ -23,7 +27,10 @@ module.exports =function verifyJwt() {
             }
             next();
         } catch (error) {
+            if (options.dashboard) res.redirect('/api/dashboard/login')
+
             if(error.message === "jwt expired") throw boom.unauthorized('Your JWT has been expired 🕐');
+            
             throw boom.badRequest(error.message);
         }
     }
