@@ -19,25 +19,24 @@ describe('Test to POST /api/auth/sign-in', () => {
       .post('/api/auth/sign-in')
       .auth(userMock.email, userMock.password)
       .end((err, res) => {
-        if(err) done(err)
+        if (err) done(err)
         const { token } = res.body;
-        
+
         expect(token).exist
         done()
-        
+
       })
-    })
-    
-    it('Sign In-Basic Auth', (done) => {
-      testServer('/api/auth', route)
+  })
+  it('Sign In-Basic Auth', (done) => {
+    testServer('/api/auth', route)
       .post('/api/auth/sign-in')
       .auth(userMock.email, userMock.password)
       .end((err, res) => {
-        if(err) done(err)
+        if (err) done(err)
         const { token } = res.body;
+
         expect(token).exist
         done()
-       
       })
   })
 
