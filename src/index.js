@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 require('./db');
 const cors = require('cors');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const router = require('./api/routes/routes');
 const {
@@ -19,9 +19,23 @@ app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: true }));
 
+// Templete engine and static files
+app.use('/static', express.static(`${__dirname}/public`))
+app.set('view engine', 'ejs');
+app.set('views', `${__dirname}/views`);
+
 // Middlewares
-app.use(cors());
-app.use(helmet());
+app.use(cors())
+
+// app.use(helmet());
+
+// app.use(helmet.contentSecurityPolicy({
+//     directives:{
+//       defaultSrc:["'self'"],
+//       scriptSrc:["'self'",'cdn.jsdelivr.net', 'cdn.plot.ly'],
+//       styleSrc:["'self'",'cdn.jsdelivr.net'],
+//     }}));
+
 if (config.dev) {
     const morgan = require('morgan');
     app.use(morgan('dev'));

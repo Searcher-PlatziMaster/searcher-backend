@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+
+<body>
+    <nav>
+        <p>Dashboard 🐻</p>
+    </nav>
+    <main>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-header_title">Trabajo al que se dedican los usuarios de la aplicación</h3>
+            </div>
+            <div class="card-graphic" id="peoplePerJob"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-header_title">Numero de usuarios por departamento en Colombia</h3>
+            </div>
+            <div class="card-graphic" id="visitors"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-header_title">Grupos de edades con mayor presencia en la aplicación, seccionado por
+                    intervalos de 4 años</h3>
+            </div>
+            <div class="card-graphic" id="perAges"></div>
+        </div class="card">
+
+
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-header_title">Numero de Mujeres y Hombres registradas en la aplicación </h3>
+            </div>
+            <div class="card-graphic" id="perGender"></div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdn.plot.ly/plotly-1.2.0.min.js" crossorigin="anonymous"
+        integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+
+</html>

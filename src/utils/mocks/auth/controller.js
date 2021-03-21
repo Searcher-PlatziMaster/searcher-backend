@@ -17,29 +17,27 @@ class AuthController {
     async signin(basicAuth) {
         const encodedUserAndEmail = basicAuth.split(' ')[1]
         const userAndEmailString = base64.decode(encodedUserAndEmail)
-
         const [email, password] = userAndEmailString.split(':')
         
         let comparePasswords = password === userMock.password && email === userMock.email  
-        
-        delete userMock.password // If we returned this information
-        delete userMock.isAdmin // it be dangerous
-        
+
         if (comparePasswords) {
+            const user = {...userMock};
+
+            delete user.password;
+            delete user.isAdmin; 
+            
             return {
-                user: userMock,
+                user,
                 token: createToken(userMock)
             }
         }
-
+            
         return boom.unauthorized('Wrong Email or Password')
     }   
+    //THIS FUNCTION NEED UPDATED 
     async signup(user) { 
-        if (user) {
-            userMock.password; 
-            userMock.isAdmin; 
-            return userMock
-        }
+        if(user) return userMock
     }   
 }
 

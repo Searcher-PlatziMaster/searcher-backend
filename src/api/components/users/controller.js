@@ -6,6 +6,10 @@ class UsersController {
     constructor() {
         this.store = new UsersStore()
     }
+    async getUser(id) {
+        const user = await this.store.getUser({_id:id})
+        return user
+    }
     async updateUser(id, user) {
         const { password } = user
         let userUpdated;
