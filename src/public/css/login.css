@@ -1,0 +1,14 @@
+body {
+    background-image: url('/static/assets/background-main-page.jpg') ;
+}
+
+form {
+    color: white;
+}
+
+.loading{
+    position: fixed;
+    display: none;
+    left: calc(50% - 5em );
+    width: 10em;
+}

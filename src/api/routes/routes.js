@@ -3,6 +3,7 @@ const authRoutes = require('../components/auth/network');
 const esRoutes = require('../components/elasticSearch/network');
 const usersHistoryRoutes = require('../components/usersHistory/network');
 const dsRoutes = require('../components/ds/network');
+const dashboardRoutes = require('../components/dashboard/network');
 
 const routes = (app) => {
     app.use('/api/user', userRoutes);
@@ -10,6 +11,7 @@ const routes = (app) => {
     app.use('/api/es', esRoutes);
     app.use('/api/users-history', usersHistoryRoutes);
     app.use('/api/ds', dsRoutes);
+    app.use('/api/dashboard', dashboardRoutes);
 }
 
 module.exports = routes;
