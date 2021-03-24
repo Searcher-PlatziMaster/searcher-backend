@@ -7,6 +7,7 @@ const config = {
 	jwt_secret: process.env.JWT_SECRET  || 'secret',
 	es_user: process.env.ELASTIC_USER,
 	es_pass: process.env.ELASTIC_PASS,
+	es_url: process.env.ELASTIC_URL,
 	saltRoundsBcrypt: parseInt(process.env.SALT_ROUNDS_BCRYPT) 
 };
 
