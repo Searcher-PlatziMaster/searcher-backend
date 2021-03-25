@@ -45,8 +45,9 @@ const searchBasic = async (index, lookingfor) => {
             index: index,
             body: {
                 query: {
-                    simple_query_string: {
-                        query: lookingfor
+                    multi_match: {
+                        query: lookingfor,
+                        type: "phrase"
                     }
                 }
             }
