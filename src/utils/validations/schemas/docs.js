@@ -2,8 +2,8 @@ const joi = require('joi');
 
 const indexSchema = joi.string().lowercase().max(50);
 const headlineSchema = joi.object().keys({
-    title: joi.string().max(120),
-    name: joi.string().max(150)
+    title: joi.alternatives().try(joi.string(), joi.exist()),
+    name: joi.alternatives().try(joi.string(), joi.exist()),
 })
 const chapterSchema = joi.object().keys({
     title: joi.alternatives().try(joi.string(), joi.exist()),
@@ -31,7 +31,6 @@ const partSchema = joi.object().keys({
     name: joi.alternatives().try(joi.string(), joi.exist()),
 })
 
-const dot_comma_sepSchema = joi.array().items(joi.string())
 
 const createDocumentSchema = {
     index: indexSchema.required(),
@@ -43,8 +42,6 @@ const createDocumentSchema = {
     book: bookSchema.required(),
     section: sectionSchema.required(),
     part: partSchema.required(),
-    dot_comma_sep: dot_comma_sepSchema.required()
-
 }
 
 module.exports = {
