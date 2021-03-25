@@ -11,10 +11,21 @@ const createIndex = (index) => {
         index: index
     })
 }
-const insertDocument = (data) => {
+const insertDocument = (index, id, headline, chapter, article, legal_source, book, section, part, dot_comma_sep) => {
     try {
         return client.index({
-            data
+            index: index,
+            id: id,
+            body: {
+                headline, 
+                chapter,
+                article,
+                legal_source,
+                book,
+                section,
+                part,
+                dot_comma_sep
+            }
         });
     } catch (error) {
         throw boom.badRequest(error);
